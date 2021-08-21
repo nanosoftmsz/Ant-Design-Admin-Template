@@ -8,7 +8,7 @@ import LoggedInRoute from './ProtectedRoute/LoggedInRoute';
 function CommonLayout() {
     return (
         <Switch>
-            <Route exact path="/" render={() => <Redirect to="/login" />} />
+            {/* <Route exact path="/" render={() => <Redirect to="/login" />} /> */}
             <Route exact path="/login" component={Login} />
             <Route exact path="/reset-passwords" component={DemoPage} />
             <LoggedInRoute component={AdminLayout} />
