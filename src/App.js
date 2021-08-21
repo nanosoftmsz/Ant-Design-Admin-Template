@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.less';
 import CommonLayout from './layouts/CommonLayout';
 
 function App() {

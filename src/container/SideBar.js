@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Menu } from "antd";
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from "@ant-design/icons";
-import '../styles/Sidebar.css'
+import '../styles/Sidebar.less'
 
 const { Sider } = Layout;
 
