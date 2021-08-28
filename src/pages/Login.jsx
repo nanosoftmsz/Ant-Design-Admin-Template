@@ -3,7 +3,7 @@ import { Form, Input, Button, Layout, Divider } from "antd";
 import { KeyOutlined, LoadingOutlined } from "@ant-design/icons";
 import { useHistory, Link } from "react-router-dom";
 
-import "../styles/Login.less";
+import "../styles/PageStyles/Login.less";
 
 const { Header, Content } = Layout;
 
@@ -18,31 +18,32 @@ function Login() {
   };
 
   return (
-    <Layout className="login-layout" style={{ height: "100vh" }}>
+    <Layout className="login-layout">
       <Header className="login-header">
-        <Link to="/manager" className="logo-link">
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>{/* <img className="app_logo" src={Logo} height="50px" alt="logo" /> */}</div>
-        </Link>
+        <div>dslkfj</div>
         <div className="systemlogin-text">System Login</div>
       </Header>
       <div className="head-divider">
         <Divider />
       </div>
       <Content>
-        {/* <div><img className="img_tree" src={Tree} alt="login-tree" /> </div> */}
         <Form form={form} name="normal_login" className="login-form" onFinish={onFinish}>
           <div className="systemlogin-mbl">System Login</div>
           <Form.Item
-            name="userID"
-            label="User Id"
+            name="email"
+            label="Email"
             labelCol={{ span: 24 }}
             rules={[
               {
+                type: "email",
+                message: "The input is not valid E-mail!",
+              },
+              {
                 required: true,
-                message: "Please input your User ID!",
+                message: "Please input your E-mail!",
               },
             ]}>
-            <Input />
+            <Input placeholder="Enter your email" />
           </Form.Item>
           <Form.Item
             name="password"
@@ -54,7 +55,7 @@ function Login() {
                 message: "Please input your Password!",
               },
             ]}>
-            <Input.Password />
+            <Input.Password placeholder="Enter your password" />
           </Form.Item>
           <Form.Item>
             <Button type="primary" disabled={loading} htmlType="submit" className="login-form-button">
@@ -76,8 +77,6 @@ function Login() {
           </Form.Item>
         </Form>
       </Content>
-      {/* <CommonFooter /> */}
-      {/* <Footer style={{ textAlign: 'center', fontSize: '12px' }}><span><CopyrightOutlined /></span> v2 Technologies LTD-2020</Footer> */}
     </Layout>
   );
 }
