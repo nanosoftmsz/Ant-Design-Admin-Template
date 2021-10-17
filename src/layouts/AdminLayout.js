@@ -1,23 +1,25 @@
-import React, { useState, useContext } from "react";
-import { Button, Layout } from "antd";
+import React, { useState } from "react";
+import { Button, Drawer, Layout } from "antd";
 import { LogoutOutlined, LoadingOutlined, MenuOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 
 import { BaseAPI } from "../utils/Api";
-import { AppRootContext } from "../contexts/AppRootContext";
-
-import SideBar from "../container/SideBar";
-import Navbar from "../container/Navbar";
-
+import MenuTopics from "../container/MenuTopics";
 import AppRoutes from "../routes";
+import "../styles/Navbar.less";
+import "../styles/Sidebar.less";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content, Footer, Sider } = Layout;
 
 function AdminLayout() {
   const history = useHistory();
-  const { setNavIsVisible } = useContext(AppRootContext);
 
   const [loading, setLoading] = useState(false);
+  const [navIsVisible, setNavIsVisible] = useState(false);
+
+  const closeSidenav = () => {
+    setNavIsVisible(false);
+  };
 
   const logout = () => {
     setLoading(true);
@@ -37,13 +39,24 @@ function AdminLayout() {
       .finally(() => setLoading(false));
   };
 
+  const openSidenav = () => {
+    setNavIsVisible(true);
+  };
+
   return (
     <Layout>
-      <Navbar />
-      <SideBar />
+      <Drawer title="E-Commerce" placement="left" onClose={closeSidenav} visible={navIsVisible}>
+        <MenuTopics onClick={closeSidenav} />
+      </Drawer>
+
+      <Sider breakpoint="lg" collapsedWidth="0" trigger={null} className="sidebar-layout">
+        <div className="logo">E-Commerce</div>
+        <MenuTopics />
+      </Sider>
+
       <Layout>
         <Header className="site-layout-sub-header-background ">
-          <Button className="menu" type="primary" icon={<MenuOutlined />} onClick={() => setNavIsVisible(true)} />
+          <Button className="menu" type="primary" icon={<MenuOutlined />} onClick={openSidenav} />
           <Button className="logout-btn" onClick={logout} danger icon={loading ? <LoadingOutlined /> : <LogoutOutlined />}>
             Logout
           </Button>

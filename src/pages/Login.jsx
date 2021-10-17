@@ -14,7 +14,8 @@ function Login() {
   const [loading, setLoading] = useState(false);
 
   const onFinish = (values) => {
-    console.log(values);
+    localStorage.setItem("accessToken", "lsdkfjlsdkf");
+    history.push("/");
   };
 
   return (
