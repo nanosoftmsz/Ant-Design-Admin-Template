@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import { AppRootContextProvider } from "../contexts/AppRootContext";
+import { AppRootContextProvider } from '../contexts/AppRootContext';
 
-import AdminLayout from "./AdminLayout";
-import LoggedInRoute from "../routes/ProtectedRoute/LoggedInRoute";
-import Login from "../pages/Login";
+import AdminLayout from './AdminLayout';
+import LoggedInRoute from '../routes/ProtectedRoute/LoggedInRoute';
+import Login from '../pages/Login';
 
-function CommonLayout() {
+const CommonLayout = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -15,11 +15,11 @@ function CommonLayout() {
   return (
     <AppRootContextProvider>
       <Switch>
-        <Route exact path="/login" component={Login} />
+        <Route exact path='/login' component={Login} />
         <LoggedInRoute component={AdminLayout} />
       </Switch>
     </AppRootContextProvider>
   );
-}
+};
 
 export default CommonLayout;
